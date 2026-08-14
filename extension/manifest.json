@@ -1,0 +1,89 @@
+{
+  "manifest_version": 3,
+  "name": "NodeSeek Expansion Tool",
+  "version": "0.1.0",
+  "description": "NodeSeek / DeepFlood 论坛插件，提供用户标签、内容管理、趋势图、自动传图、签到提醒、阅读导航、快捷评论、快捷短语、抽奖通知、站内消息通知和访问历史等实用功能",
+  "minimum_chrome_version": "111",
+  "permissions": [
+    "alarms",
+    "declarativeNetRequestWithHostAccess",
+    "notifications",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://nodeseek.com/*",
+    "https://www.nodeseek.com/*",
+    "https://deepflood.com/*",
+    "https://www.deepflood.com/*",
+    "https://api.drand.sh/*",
+    "https://api.nodeimage.com/*",
+    "https://api.telegram.org/*",
+    "https://api.resend.com/*",
+    "https://api.sendgrid.com/*",
+    "https://api.mailgun.net/*",
+    "https://api.emailjs.com/*",
+    "https://www.pushplus.plus/*",
+    "https://sc.ftqq.com/*",
+    "https://sctapi.ftqq.com/*",
+    "https://oapi.dingtalk.com/*",
+    "https://open.feishu.cn/*",
+    "https://qyapi.weixin.qq.com/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "NodeSeek Expansion Tool",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://nodeseek.com/*",
+        "https://www.nodeseek.com/*",
+        "https://deepflood.com/*",
+        "https://www.deepflood.com/*"
+      ],
+      "js": ["content/bridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://nodeseek.com/*",
+        "https://www.nodeseek.com/*",
+        "https://deepflood.com/*",
+        "https://www.deepflood.com/*"
+      ],
+      "css": [
+        "vendor/layui/css/layui.css",
+        "vendor/highlight/atom-one-light.min.css"
+      ],
+      "js": [
+        "content/main-shim.js",
+        "vendor/layui/layui.js",
+        "vendor/highlight/highlight.min.js",
+        "content/nodeseek-max.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

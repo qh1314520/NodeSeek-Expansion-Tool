@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NodeSeek Expansion Tool 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="../icons/icon48.png" alt="">
+        <strong>NodeSeek Expansion Tool</strong>
+      </div>
+      <nav class="side-nav" aria-label="设置分类">
+        <button class="nav-item active" data-tab="labels" type="button">标签数据</button>
+        <button class="nav-item" data-tab="reading" type="button">阅读导航</button>
+        <button class="nav-item" data-tab="quick" type="button">快捷短语</button>
+        <button class="nav-item" data-tab="content" type="button">内容管理</button>
+        <button class="nav-item" data-tab="images" type="button">图床配置</button>
+        <button class="nav-item" data-tab="lottery" type="button">抽奖助手</button>
+        <button class="nav-item" data-tab="signin" type="button">自动签到</button>
+        <button class="nav-item" data-tab="monitor" type="button">站内信息通知</button>
+        <button class="nav-item" data-tab="channels" type="button">推送渠道</button>
+        <button class="nav-item" data-tab="footprint" type="button">访问足迹</button>
+        <button class="nav-item" data-tab="sync" type="button">同步备份</button>
+        <button class="nav-item" data-tab="about" type="button">关于扩展</button>
+      </nav>
+      <div class="sidebar-footer"><span>v0.1.0</span><span>Chrome · Edge</span></div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="page-heading"><h1 id="page-title">标签数据</h1><p id="page-description">控制帖子用户名后的资料标签与用户关系功能</p></div>
+        <div class="top-actions">
+          <div class="theme-control" aria-label="主题">
+            <button data-theme-value="system" type="button" title="跟随系统">系统</button>
+            <button data-theme-value="light" type="button" title="浅色主题">浅色</button>
+            <button data-theme-value="dark" type="button" title="深色主题">深色</button>
+          </div>
+          <button class="button primary open-site" data-url="https://www.nodeseek.com/" type="button">打开 NodeSeek</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="panel active" data-panel="labels">
+          <div class="section-row first">
+            <div><h2>显示标签</h2><p>勾选后显示在帖子用户名后方；接口没有返回的数据不会显示空标签</p></div>
+            <label class="switch"><input id="inline-user-info-enabled" data-gm-path="inline_user_info.enabled" type="checkbox"><span></span></label>
+          </div>
+          <div id="user-label-options" class="check-grid"></div>
+
+          <div class="section-row small"><div><h3>显示位置</h3><p>分别控制主题楼主与评论区用户</p></div></div>
+          <div class="settings-block compact two-up">
+            <label class="setting-row interactive"><strong>楼主标签</strong><input data-gm-path="inline_user_info.show_op" type="checkbox"></label>
+            <label class="setting-row interactive"><strong>评论标签</strong><input data-gm-path="inline_user_info.show_cmt" type="checkbox"></label>
+          </div>
+
+          <div class="section-row small"><div><h3>标签样式</h3><p>统一设置标签密度，并单独调整各等级颜色与透明度</p></div></div>
+          <label class="field full-field"><span>标签尺寸</span><select data-gm-path="inline_user_info.label_size"><option value="compact">紧凑</option><option value="standard">标准</option><option value="large">宽松</option></select></label>
+          <div id="level-style-grid" class="level-style-grid"></div>
+          <div class="settings-block compact two-up user-style-options">
+            <label class="setting-row interactive"><div><strong>描边等级样式</strong><span>等级标签使用透明底色和描边</span></div><input data-gm-path="inline_user_info.simple_lv_style" type="checkbox"></label>
+            <label class="setting-row"><div><strong>兼容颜色</strong><span>旧配置使用的自定义 CSS 颜色</span></div><input class="compact-input" data-gm-path="inline_user_info.simple_lv_color" type="text"></label>
+          </div>
+
+          <div class="section-row small"><div><h3>用户资料与关系</h3><p>悬浮卡、好友高亮和屏蔽操作</p></div></div>
+          <div data-feature-category="labels" class="feature-groups"></div>
+          <div data-advanced-category="labels" class="advanced-settings"></div>
+        </section>
+
+        <section class="panel" data-panel="reading">
+          <div class="section-row first"><div><h2>阅读与导航</h2><p>帖子加载、楼中楼、图片预览与页面导航体验</p></div></div>
+          <div data-feature-category="reading" class="feature-groups"></div>
+          <div data-advanced-category="reading" class="advanced-settings"></div>
+        </section>
+
+        <section class="panel" data-panel="quick">
+          <div class="section-row first"><div><h2>快捷短语</h2><p>按分组维护 NodeSeek 常用回复，点击论坛编辑器中的气泡按钮即可插入</p></div></div>
+          <div class="settings-block quick-phrase-controls">
+            <div class="setting-row"><div><strong>启用快捷评论</strong><span>在帖子页面显示快速打开回复编辑器的按钮</span></div><label class="switch"><input id="quick-comment-enabled" type="checkbox"><span></span></label></div>
+            <div class="setting-row"><div><strong>启用快捷短语</strong><span>在帖子回复编辑器中显示快捷短语气泡按钮</span></div><label class="switch"><input id="quick-phrases-enabled" type="checkbox"><span></span></label></div>
+            <label class="setting-row interactive"><div><strong>插入后自动提交</strong><span>仅对当前选择的论坛生效，开启后点击短语会直接发布</span></div><input id="quick-auto-submit" type="checkbox"></label>
+          </div>
+          <div class="section-row small"><div><h3>短语分组</h3><p id="quick-phrase-summary">正在读取论坛数据</p></div><button id="add-phrase-group" class="button primary" type="button">新建分组</button></div>
+          <div id="quick-phrase-groups" class="management-grid"></div>
+          <div data-feature-category="quick" class="feature-groups"></div>
+          <div data-advanced-category="quick" class="advanced-settings"></div>
+        </section>
+
+        <section class="panel" data-panel="content">
+          <div class="section-row first"><div><h2>内容管理</h2><p>管理 NodeSeek 关键词和用户屏蔽规则，并配置链接净化</p></div><button id="reset-content-rules" class="button" type="button">恢复默认</button></div>
+          <div class="content-toggle-grid">
+            <div class="management-toggle"><div><strong>关键词</strong><span>按规则高亮、折叠或隐藏主题</span></div><label class="switch"><input id="content-keyword-enabled" type="checkbox"><span></span></label></div>
+            <div class="management-toggle"><div><strong>用户</strong><span>按用户名标记、折叠或隐藏内容</span></div><label class="switch"><input id="content-user-enabled" type="checkbox"><span></span></label></div>
+          </div>
+
+          <div class="section-row small"><div><h3>标记规则</h3><p>分组可单独开启或关闭，规则可选择所属分组</p></div></div>
+          <div class="rule-group-grid">
+            <section class="management-card">
+              <header><div><strong>关键词</strong><span id="keyword-group-summary">0 个分组</span></div><button class="button" data-add-rule-group="keywords" type="button">新建组</button></header>
+              <div id="keyword-rule-groups" class="management-list"></div>
+            </section>
+            <section class="management-card">
+              <header><div><strong>用户</strong><span id="user-group-summary">0 个分组</span></div><button class="button" data-add-rule-group="users" type="button">新建组</button></header>
+              <div id="user-rule-groups" class="management-list"></div>
+            </section>
+          </div>
+
+          <div class="section-row small"><div><h3>屏蔽规则</h3><p>首页按标题或用户名隐藏帖子；帖子页按用户名处理对应楼层</p></div></div>
+          <div class="settings-block compact rule-entry-list">
+            <div class="setting-row"><div><strong>关键词</strong><span id="keyword-rule-summary">0 个关键词</span></div><button id="edit-keyword-rules" class="button" type="button">编辑</button></div>
+            <div class="setting-row"><div><strong>用户</strong><span id="user-rule-summary">0 个用户</span></div><button id="edit-user-rules" class="button" type="button">编辑</button></div>
+          </div>
+          <div data-feature-category="content" class="feature-groups"></div>
+          <div data-advanced-category="content" class="advanced-settings"></div>
+        </section>
+
+        <section class="panel" data-panel="images">
+          <div class="section-row first"><div><h2>图片上传</h2><p>粘贴、拖放或选择图片后上传至 NodeImage</p></div></div>
+          <div data-feature-category="images" class="feature-groups"></div>
+          <div class="section-row small">
+            <div><h3>NodeImage API</h3><p>API Key 仅保存在本机，上传时通过 X-API-Key 请求头发送</p></div>
+            <button class="button open-site" data-url="https://www.nodeimage.com/" type="button">打开 NodeImage</button>
+          </div>
+          <div class="settings-block nodeimage-settings">
+            <div class="setting-row nodeimage-key-row">
+              <div><strong>API Key</strong><span>用于 NodeImage 图片上传</span></div>
+              <div class="secret-control">
+                <input id="nodeimage-api-key" type="password" autocomplete="off" spellcheck="false" placeholder="填写 NodeImage API Key">
+                <button id="toggle-nodeimage-key" class="button" type="button" aria-label="显示 API Key">显示</button>
+                <button id="save-nodeimage-key" class="button primary" type="button">保存</button>
+                <button id="clear-nodeimage-key" class="button" type="button">清除</button>
+              </div>
+            </div>
+            <div class="setting-row"><div><strong>上传接口</strong><span>固定使用 NodeImage 官方 API</span></div><code class="endpoint-value">https://api.nodeimage.com/api/upload</code></div>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="lottery">
+          <div class="section-row first"><div><h2>抽奖助手</h2><p>自动记录已评论参加的抽奖，跟踪开奖时间与通知结果</p></div><button id="refresh-lottery-records" class="button" type="button">刷新记录</button></div>
+          <div data-feature-category="lottery" class="feature-groups"></div>
+          <div data-advanced-category="lottery" class="advanced-settings"></div>
+
+          <div class="section-row"><div><h2>抽奖通知</h2><p>复用“推送渠道”中的 Telegram、邮件、微信、企业微信、钉钉和飞书配置</p></div><button id="lottery-channel-settings" class="button" type="button">配置推送渠道</button></div>
+          <div class="settings-block lottery-notification-settings">
+            <label class="setting-row interactive"><div><strong>启用抽奖通知</strong><span>关闭后不发送开奖前提醒和开奖结果</span></div><input data-path="lotteryNotifications.enabled" type="checkbox"></label>
+            <label class="setting-row interactive"><div><strong>浏览器通知</strong><span>显示可点击的桌面通知</span></div><input data-path="lotteryNotifications.browserNotifications" type="checkbox"></label>
+            <label class="setting-row interactive"><div><strong>外部推送</strong><span>发送到已启用且配置完整的推送渠道</span></div><input data-path="lotteryNotifications.pushEnabled" type="checkbox"></label>
+            <label class="setting-row interactive"><div><strong>开奖前提醒</strong><span>在设定的提前时间内通知</span></div><input data-path="lotteryNotifications.nearDraw" type="checkbox"></label>
+            <label class="setting-row interactive"><div><strong>开奖结果通知</strong><span>开奖后通知中奖、未中奖或已开奖状态</span></div><input data-path="lotteryNotifications.result" type="checkbox"></label>
+            <label class="setting-row interactive"><div><strong>自动识别开奖结果</strong><span>有抽奖结果页时自动判断中奖状态</span></div><input id="lottery-auto-result" type="checkbox"></label>
+            <label class="setting-row"><div><strong>NodeSeek 用户名</strong><span>用于在中奖名单中判断是否为本人；留空时尝试读取登录用户名</span></div><input id="lottery-username" class="compact-input" type="text" autocomplete="off"></label>
+          </div>
+
+          <div class="section-row"><div><h2>我的抽奖记录</h2><p id="lottery-record-summary">正在读取记录</p></div><button id="clear-lottery-records" class="button" type="button">清除记录</button></div>
+          <div class="overview-grid lottery-overview">
+            <div class="overview-item"><span>已参加</span><strong id="lottery-joined-count">0</strong></div>
+            <div class="overview-item"><span>待通知</span><strong id="lottery-pending-count">0</strong></div>
+          </div>
+          <div id="lottery-record-list" class="lottery-record-list"></div>
+        </section>
+
+        <section class="panel" data-panel="signin">
+          <div class="section-row first"><div><h2>自动签到</h2><p>单独管理 NodeSeek、DeepFlood 自动签到与签到提醒</p></div><button id="enable-recommended" class="button" type="button">应用推荐设置</button></div>
+          <div data-feature-category="signin" class="feature-groups"></div>
+          <div data-advanced-category="signin" class="advanced-settings"></div>
+          <div class="section-row small"><div><h3>签到操作</h3><p>清除今日签到记录并刷新对应论坛</p></div><div class="inline-actions"><button class="button retry-signin" data-site="ns" data-url="https://www.nodeseek.com/" type="button">重试 NodeSeek</button><button class="button retry-signin" data-site="df" data-url="https://www.deepflood.com/" type="button">重试 DeepFlood</button></div></div>
+        </section>
+
+        <section class="panel" data-panel="monitor">
+          <div class="section-row first"><div><h2>站内信息通知</h2><p id="last-poll">尚未检查</p></div><label class="switch"><input data-path="notifications.enabled" type="checkbox"><span></span></label></div>
+          <div class="settings-block">
+            <div class="setting-row"><div><strong>检查间隔</strong><span>浏览器运行时定时检查</span></div><div class="number-control"><input data-path="notifications.pollMinutes" type="number" min="1" max="60"><span>分钟</span></div></div>
+            <label class="setting-row interactive"><div><strong>浏览器通知</strong><span>显示系统桌面通知</span></div><input data-path="notifications.browserNotifications" type="checkbox"></label>
+            <label class="setting-row interactive"><div><strong>私信摘要</strong><span>关闭后不向通知渠道发送私信正文</span></div><input data-path="notifications.includePreview" type="checkbox"></label>
+          </div>
+          <div class="two-column">
+            <div><h3>监控站点</h3><div class="settings-block compact"><label class="setting-row interactive"><strong>NodeSeek</strong><input data-path="notifications.sites.nodeseek" type="checkbox"></label><label class="setting-row interactive"><strong>DeepFlood</strong><input data-path="notifications.sites.deepflood" type="checkbox"></label></div></div>
+            <div><h3>通知事件</h3><div class="settings-block compact"><label class="setting-row interactive"><strong>艾特</strong><input data-path="notifications.types.mention" type="checkbox"></label><label class="setting-row interactive"><strong>主题回复</strong><input data-path="notifications.types.reply" type="checkbox"></label><label class="setting-row interactive"><strong>站内私信</strong><input data-path="notifications.types.message" type="checkbox"></label></div></div>
+          </div>
+          <div class="section-row small"><div><h3>免打扰</h3><p>仅暂停浏览器桌面通知</p></div><label class="switch"><input data-path="notifications.quietHours.enabled" type="checkbox"><span></span></label></div>
+          <div class="time-grid"><label class="field"><span>开始时间</span><input data-path="notifications.quietHours.start" type="time"></label><label class="field"><span>结束时间</span><input data-path="notifications.quietHours.end" type="time"></label></div>
+          <div class="section-row small"><div><h3>运行状态</h3></div><button id="poll-now" class="button" type="button">立即检查</button></div>
+          <div id="site-status" class="status-table"></div>
+          <div class="section-row small"><div><h3>通知数据</h3><p>管理检查基线和渠道发送结果</p></div></div>
+          <div class="settings-block action-list">
+            <div class="setting-row"><div><strong>通知基线</strong><span>下次检查以当前最新通知重新建立基线</span></div><button id="reset-baseline" class="button" type="button">重置</button></div>
+            <div class="setting-row"><div><strong>发送记录</strong><span>清除最近检查与渠道发送结果</span></div><button id="clear-logs" class="button" type="button">清除</button></div>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="channels">
+          <div class="section-row first"><div><h2>推送渠道</h2><p>按 Telegram Bot、邮件、微信推送、企业微信、钉钉、飞书顺序配置</p></div></div>
+          <section class="notification-template-section">
+            <div class="section-row small"><div><h3>消息模板</h3><p>所有已启用的推送渠道共用以下两份模板</p></div><button id="reset-notification-templates" class="button" type="button">恢复默认</button></div>
+            <div class="notification-template-grid">
+              <label class="field notification-template"><span>站内信息通知模板</span><textarea data-path="notifications.templates.forum" placeholder="{subject}&#10;{body}&#10;{url}"></textarea><small>用于艾特、主题回复和站内私信通知</small></label>
+              <label class="field notification-template"><span>抽奖助手模板</span><textarea data-path="notifications.templates.lottery" placeholder="{subject}&#10;{body}&#10;{url}"></textarea><small>用于开奖前提醒和开奖结果通知</small></label>
+            </div>
+            <div class="template-variable-list" aria-label="消息模板变量说明">
+              <div><code>{subject}</code><span>通知标题</span></div>
+              <div><code>{body}</code><span>完整通知正文</span></div>
+              <div><code>{url}</code><span>通知详情链接</span></div>
+              <div><code>{site}</code><span>来源论坛名称</span></div>
+              <div><code>{type}</code><span>艾特、回复、私信或抽奖提醒类型</span></div>
+              <div><code>{actor}</code><span>触发通知的用户或扩展</span></div>
+              <div><code>{summary}</code><span>通知内容摘要</span></div>
+              <div><code>{time}</code><span>事件发生时间</span></div>
+            </div>
+          </section>
+          <div id="channel-list" class="channel-list"></div>
+        </section>
+
+        <section class="panel" data-panel="footprint">
+          <div class="section-row first"><div><h2>访问足迹</h2><p>浏览历史、已访问颜色与本人回帖记录</p></div><button id="refresh-footprint-history" class="button" type="button">刷新</button></div>
+          <div data-feature-category="footprint" class="feature-groups"></div>
+          <div data-advanced-category="footprint" class="advanced-settings"></div>
+          <div class="footprint-panels">
+            <section class="footprint-panel" data-footprint-kind="history">
+              <header class="footprint-header"><div><strong>历史记录</strong><span>浏览过的帖子</span></div><button id="clear-footprint-history" class="footprint-clear" type="button">清空</button></header>
+              <label class="footprint-search"><input id="footprint-history-search" type="search" placeholder="搜索历史记录"></label>
+              <div id="footprint-history-list" class="footprint-history-list"></div>
+            </section>
+            <section class="footprint-panel" data-footprint-kind="recent">
+              <header class="footprint-header"><div><strong>最近关闭</strong><span>从历史记录中关闭的帖子</span></div><button id="clear-footprint-recent" class="footprint-clear" type="button">清空</button></header>
+              <label class="footprint-search"><input id="footprint-recent-search" type="search" placeholder="搜索最近关闭"></label>
+              <div id="footprint-recent-list" class="footprint-history-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="sync">
+          <div class="section-row first"><div><h2>同步与备份</h2><p>可快速导出个人配置，也可备份全部设置和记录</p></div></div>
+          <div class="settings-block action-list">
+            <div class="setting-row"><div><strong>用户信息导出</strong><span>快速导出功能设置、通知配置、关键词、用户屏蔽和快捷短语，不包含历史、抽奖、签到与通知记录</span></div><button id="export-user-settings" class="button" type="button">导出</button></div>
+            <div class="setting-row"><div><strong>完整备份</strong><span>包含扩展设置、论坛配置、访问历史、抽奖记录和其他本地数据，导出时间较长</span></div><div class="inline-actions"><button id="export-settings" class="button" type="button">导出</button><label class="button file-button">还原<input id="import-settings" type="file" accept="application/json"></label></div></div>
+            <div class="setting-row"><div><strong>刷新论坛页面</strong><span>让刚保存的网页增强设置立即生效</span></div><button id="refresh-forum-tabs" class="button" type="button">刷新</button></div>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="about">
+          <div class="about-card">
+            <header class="about-card-header">
+              <div>
+                <h2>关于扩展</h2>
+                <p>NodeSeek Expansion Tool 是 NodeSeek / DeepFlood 非官方 Chromium MV3 扩展，以网页附加功能为主、信息通知为辅，提供用户标签、内容管理、自动传图、签到提醒、阅读导航、快捷评论、快捷短语、抽奖通知、站内消息通知、访问足迹和同步备份等实用功能。</p>
+              </div>
+              <img class="about-logo" src="../icons/icon128.png" alt="NodeSeek Expansion Tool Logo">
+            </header>
+
+            <section class="about-section">
+              <h3>隐私声明</h3>
+              <ul>
+                <li>扩展没有开发者账户、遥测统计、广告追踪或远程配置中心，不会把本地保存的配置、缓存和通知记录上传给插件作者。</li>
+                <li>界面主题、功能开关、标签样式、关键词、快捷短语、浏览历史、访问标记、好友、黑名单、回帖足迹、通知状态和签到记录保存在浏览器本地。</li>
+                <li>NodeImage API Key、通知渠道 Token、API Key、Webhook、邮件地址等敏感配置仅用于用户主动启用的功能，并保存在 <code>chrome.storage.local</code>。</li>
+                <li>扩展不会读取浏览器密码、支付信息、Cookie 明文、自动填充资料、通讯录、精确位置、摄像头或麦克风，也不会收集与论坛功能无关的网站浏览记录。</li>
+                <li>图片只在用户主动选择、粘贴或拖放时读取；未填写或未启用的通知渠道不会收到论坛数据，关闭“私信摘要”后不会向外部渠道发送私信正文预览。</li>
+                <li>“用户信息导出”不包含访问、抽奖、签到或通知记录；“完整备份”可能包含 API Key、Token、Webhook、快捷短语、历史和用户关系数据。请妥善保管，不要公开上传完整备份文件。</li>
+              </ul>
+            </section>
+
+            <section class="about-section">
+              <h3>数据边界</h3>
+              <p>浏览 NodeSeek / DeepFlood、检查签到状态或监控艾特、回复、私信时，扩展只访问当前论坛页面及对应接口，并使用当前浏览器登录会话。内容脚本只注入 NodeSeek 与 DeepFlood。</p>
+              <p>启用图片上传后，扩展只把用户主动选择的图片文件和 NodeImage API Key 发送到 <code>api.nodeimage.com</code>；请求头规则也仅作用于该上传接口。</p>
+              <p>启用外部通知后，通知标题、正文或摘要、帖子链接及渠道认证配置会发送到用户选择的 Telegram Bot、邮件、微信推送、企业微信、钉钉或飞书服务。扩展不会把这些内容转发到插件作者服务器。</p>
+              <p><code>storage</code> 用于保存本地数据，<code>tabs</code> 用于打开或刷新论坛页面及完成备份通信，<code>alarms</code> 用于定时检查通知，<code>notifications</code> 用于显示浏览器桌面通知，HTTPS 访问用于论坛、NodeImage 和用户配置的通知服务。</p>
+              <p>本扩展不隶属于 NodeSeek、DeepFlood、NodeImage 或任何通知服务提供商。使用第三方服务时还应遵守相应服务条款；论坛页面结构或接口变化可能影响部分功能。</p>
+            </section>
+
+            <footer class="about-meta">
+              <div><span>插件版本</span><strong><span id="extension-version">读取中</span></strong></div>
+              <div><span>运行环境</span><strong>Manifest V3 · Chromium <span id="minimum-browser-version">读取中</span>+ · Chrome / Edge</strong></div>
+              <div class="about-feedback"><span>建议反馈</span><div class="about-links"><button class="about-link open-site" data-url="https://www.nodeseek.com/notification#/message?mode=talk&amp;to=16143" type="button">NodeSeek 私信反馈</button><button class="about-link open-site" data-url="https://github.com/qh1314520/NodeSeek-Expansion-Tool" type="button">GitHub 仓库提交</button></div></div>
+              <div class="about-references"><span>参考项目</span><div class="about-links"><button class="about-link open-site" data-url="https://github.com/EISEN0516/nodeseek-pro-userscript" type="button">Nodeseek Max-iSen</button><button class="about-link open-site" data-url="https://greasyfork.org/zh-CN/scripts/567109-nodeseek-pro" type="button">NodeSeek Pro</button><button class="about-link open-site" data-url="https://chromewebstore.google.com/detail/nodeseek-helper/fljjlmmflicoocnceopdeeibflcohenp" type="button">NodeSeek Helper</button></div></div>
+              <p>反馈前请从截图、日志和备份中删除 API Key、Bot Token、Webhook、邮箱地址、私信正文、Cookie 与其他个人信息。</p>
+            </footer>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="management-dialog" class="management-dialog">
+    <form id="management-dialog-form" method="dialog">
+      <header><div><h2 id="management-dialog-title"></h2><p id="management-dialog-description"></p></div><button id="management-dialog-close" class="dialog-close" type="button" aria-label="关闭">×</button></header>
+      <div id="management-dialog-body" class="management-dialog-body"></div>
+      <footer><button id="management-dialog-cancel" class="button" type="button">取消</button><button id="management-dialog-save" class="button primary" type="submit">保存</button></footer>
+    </form>
+  </dialog>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

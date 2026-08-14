@@ -53,7 +53,7 @@
 - 论坛请求使用浏览器当前登录状态，仅访问通知列表和页面增强所需接口。
 - 开启第三方渠道后，通知标题、用户名、主题或私信摘要会发送到用户配置的服务。
 - 可以关闭“包含私信摘要”，仅发送“打开论坛查看私信内容”。
-- `https://*/*` 权限用于通知 Webhook、图床上传和参考脚本中的可配置 HTTPS 服务。
+- 主机权限仅覆盖 NodeSeek / DeepFlood、NodeImage、drand 以及当前支持的通知服务域名，不申请通配的 `https://*/*` 访问权限。
 - Manifest V3 后台由浏览器调度，休眠或关闭浏览器时无法保证精确到分钟。
 
 ## 开发与验证
@@ -68,8 +68,48 @@ npm.cmd run smoke:edge
 
 Edge 冒烟测试会在屏幕外打开临时浏览器窗口，完成双主题、设置页路由、弹窗层级和论坛内容脚本检查后自动关闭。
 
-## 来源与许可证
+## 参考项目与致谢
 
-页面增强部分基于 [EISEN0516/nodeseek-pro-userscript](https://github.com/EISEN0516/nodeseek-pro-userscript) 的 GPL-3.0 源码改造，并保留原项目名称、版本与许可证信息。详见 `THIRD_PARTY_NOTICES.md`。
+NodeSeek Expansion Tool 是独立维护的非官方浏览器扩展，不隶属于 NodeSeek、DeepFlood 或下列项目。项目开发过程中对不同开源脚本和同类扩展进行了源码改造、功能对照或产品形态参考；三者的关系并不相同。
 
-本项目整体采用 GPL-3.0 许可证。
+| 项目 | 许可证 / 来源状态 | 本项目中的参考关系 |
+| --- | --- | --- |
+| [Nodeseek Max-iSen](https://github.com/EISEN0516/nodeseek-pro-userscript) | GPL-3.0，公开源码 | 页面增强核心的直接派生基础 |
+| [Nodeseek Pro](https://greasyfork.org/zh-CN/scripts/567109-nodeseek-pro) | GPL-3.0，GreasyFork 公开源码 | 功能覆盖、设置模型、备份数据与交互能力对照 |
+| [NodeSeek Helper](https://chromewebstore.google.com/detail/nodeseek-helper/fljjlmmflicoocnceopdeeibflcohenp) | 商店页面未提供源码仓库或许可证 | 仅参考公开功能定位与浏览器扩展产品形态 |
+
+### Nodeseek Max-iSen
+
+- 上游项目：`EISEN0516/nodeseek-pro-userscript`
+- 参考版本：`1.1.21`
+- 参考提交：`bb63b57cfa6037bd4225464737007260c6d836a3`
+- 许可证：GPL-3.0
+- 派生文件：`extension/content/nodeseek-max.js`
+
+本项目以该用户脚本的页面增强模块为主要源码基础，保留了自动签到、楼中楼、连续加载、快捷回复、内容过滤、用户关系、浏览历史、链接净化、图片上传、回帖足迹和抽奖辅助等能力。为适配 Chrome / Edge Manifest V3，项目增加了启动门控、`GM_*` 兼容层、扩展后台通信、本地打包的 Layui 与 highlight.js 资源，并重新设计了扩展设置页和浅色 / 深色双主题界面。
+
+在后续改造中，项目将多图床收敛为 NodeImage，增加可编辑 API Key 配置；将抽奖参与记录、开奖时间多来源识别、中奖者展示和通知状态纳入扩展数据模型；同时加入站内消息监控以及 Telegram Bot、邮件、微信推送、企业微信、钉钉和飞书通知。上游项目名称、版本、许可证与派生关系同时记录在 `THIRD_PARTY_NOTICES.md` 和脚本头部。
+
+### Nodeseek Pro
+
+- 发布平台：GreasyFork
+- 作者：Woodll
+- 对照版本：`1.0.8`
+- 许可证：GPL-3.0
+
+该项目用于核对 NodeSeek / DeepFlood 双站支持以及可视化设置面板的功能覆盖，重点参考了快捷短语分组、连续加载、自动签到、NodeImage 拖拽和粘贴上传、内容过滤、用户关系、访问历史、浅色 / 深色适配、配置导出与恢复等公开功能说明和源码结构。
+
+NodeSeek Expansion Tool 针对浏览器扩展环境重新组织了设置分类、存储边界与页面通信，并兼容导入 GreasyFork `nsx-backup` 数据。项目未照搬其完整脚本：按当前产品需求移除了低等级内容屏蔽、多图床与已下架的 AI 回复入口，并新增独立的通知后台、抽奖记录、通知模板、用户信息导出和扩展权限控制。测试套件中的功能与持久设置覆盖检查用于防止后续升级时遗漏已采用的能力。
+
+### NodeSeek Helper
+
+该项目是 Chrome Web Store 上的 NodeSeek 非官方扩展，公开页面展示了用户标签、内容管理、趋势图、自动传图、签到提醒、阅读导航、快捷评论、快捷短语、抽奖通知和访问历史等产品能力。本项目仅将其公开的扩展定位、功能编排和浏览器原生扩展形态作为对照参考。
+
+Chrome Web Store 页面没有提供可核验的源码仓库或开源许可证，因此 NodeSeek Helper **不作为本项目的源码依赖**；仓库没有包含、反编译或重新分发其扩展文件。若其作者后续公开源码及许可证，可再补充更精确的归属说明。
+
+### 第三方库
+
+- [Layui](https://layui.dev/) `2.10.3`：MIT，打包在 `extension/vendor/layui/`。
+- [highlight.js](https://highlightjs.org/) `11.9.0`：BSD-3-Clause，打包在 `extension/vendor/highlight/`。
+
+感谢上述项目作者和社区贡献者公开实现、文档与产品经验。本仓库保留各项目的原始链接并明确区分源码派生、功能对照和产品参考，详细第三方声明见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。本项目整体采用 GPL-3.0 许可证。

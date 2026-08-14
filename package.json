@@ -1,0 +1,11 @@
+{
+  "name": "nodeseek-expansion-tool",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check extension/background/service-worker.js && node --check extension/background/poller.js && node --check extension/background/channels.js && node --check extension/content/bridge.js && node --check extension/content/main-shim.js && node --check extension/shared/backup.js && node --check extension/shared/forum-data.js && node --check extension/shared/forum-settings.js && node --check extension/shared/lottery.js && node --check extension/options/options.js && node --check extension/popup/popup.js && node --check tests/edge-smoke.mjs",
+    "smoke:edge": "node tests/edge-smoke.mjs"
+  }
+}

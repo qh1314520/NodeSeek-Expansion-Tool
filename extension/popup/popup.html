@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NodeSeek Expansion Tool</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><img src="../icons/icon48.png" alt=""><div><h1>NodeSeek Expansion Tool</h1><span>非官方论坛增强插件</span></div></div>
+    <button id="theme-toggle" class="icon-button" type="button" title="切换主题" aria-label="切换主题">◐</button>
+  </header>
+
+  <main>
+    <section class="primary-section">
+      <div class="section-title"><div><h2>网页增强</h2><span id="feature-count">读取中</span></div><span class="status-dot" title="内容脚本已启用"></span></div>
+      <button id="open-nodeseek" class="button primary wide" type="button">打开 NodeSeek</button>
+      <div class="quick-settings">
+        <label><span><strong>楼中楼</strong><small>整理引用回复</small></span><input class="feature-toggle" data-path="nested_replies.enabled" data-default="true" type="checkbox"></label>
+        <label><span><strong>连续加载</strong><small>帖子与评论翻页</small></span><input class="feature-toggle" data-path="loading_post.enabled,loading_comment.enabled" data-default="true" type="checkbox"></label>
+        <label><span><strong>链接净化</strong><small>清理跳转与追踪参数</small></span><input class="feature-toggle" data-path="link_purifier.enabled" data-default="true" type="checkbox"></label>
+      </div>
+    </section>
+
+    <section class="secondary-section">
+      <div class="section-title"><div><h2>信息通知</h2><span id="notification-state">读取状态</span></div><label class="switch"><input id="notifications-enabled" type="checkbox"><span></span></label></div>
+      <div class="notification-meta"><span>最近检查</span><strong id="last-poll">尚未检查</strong></div>
+      <div id="notification-error" class="notification-error" hidden></div>
+    </section>
+  </main>
+
+  <footer>
+    <button id="open-deepflood" class="button" type="button">DeepFlood</button>
+    <button id="notification-settings" class="button" type="button">通知设置</button>
+    <button id="options" class="button" type="button">全部设置</button>
+  </footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
